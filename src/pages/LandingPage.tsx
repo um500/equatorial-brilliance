@@ -179,7 +179,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-32">
         <div className="absolute inset-0">
