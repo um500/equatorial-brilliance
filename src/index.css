@@ -8,41 +8,47 @@
 
 @layer base {
   :root {
-    /* Clean light theme */
-    --background: 0 0% 100%;
-    --foreground: 220 20% 15%;
+    /* Attractive gradient theme inspired by it-serve.com */
+    --background: 220 15% 96%;
+    --foreground: 220 25% 15%;
 
-    --card: 220 20% 97%;
-    --card-foreground: 220 20% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 15%;
+    --popover-foreground: 220 25% 15%;
 
-    /* Deep blue accent */
-    --primary: 220 70% 45%;
+    /* Orange/Gold accent like it-serve.com */
+    --primary: 38 95% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 94%;
-    --secondary-foreground: 220 20% 25%;
+    --secondary: 220 20% 92%;
+    --secondary-foreground: 220 25% 20%;
 
-    --muted: 220 15% 94%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 220 15% 90%;
+    --muted-foreground: 220 10% 40%;
 
-    --accent: 220 70% 45%;
+    /* Teal accent for variety */
+    --accent: 195 80% 40%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 90%;
-    --input: 220 15% 96%;
-    --ring: 220 70% 45%;
+    --border: 220 15% 85%;
+    --input: 0 0% 100%;
+    --ring: 38 95% 50%;
 
     --radius: 0.5rem;
 
-    /* Custom */
-    --glass-bg: 220 20% 98% / 0.9;
-    --glass-border: 220 15% 88%;
+    /* Custom gradients */
+    --glass-bg: 0 0% 100% / 0.95;
+    --glass-border: 220 15% 80%;
+    
+    /* Gradient colors */
+    --gradient-start: 220 25% 96%;
+    --gradient-end: 210 30% 92%;
+    --gradient-accent: 38 95% 50%;
   }
 
   * {
@@ -54,8 +60,10 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, hsl(220 25% 97%) 0%, hsl(210 30% 94%) 50%, hsl(220 20% 96%) 100%);
+    min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -65,12 +73,21 @@
 
 @layer components {
   .glass-card {
-    @apply rounded-lg border bg-card;
+    @apply rounded-xl border bg-card shadow-sm;
     border-color: hsl(var(--glass-border));
+    backdrop-filter: blur(10px);
   }
 
   .section {
     @apply py-12 md:py-20 lg:py-24;
+  }
+
+  .section-gradient {
+    background: linear-gradient(180deg, hsl(220 25% 97%) 0%, hsl(210 30% 95%) 100%);
+  }
+
+  .section-gradient-alt {
+    background: linear-gradient(180deg, hsl(210 30% 95%) 0%, hsl(220 25% 97%) 100%);
   }
 
   .section-title {
@@ -82,15 +99,22 @@
   }
 
   .service-card {
-    @apply glass-card p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30;
+    @apply glass-card p-6 transition-all duration-300 hover:shadow-xl hover:border-primary/40 hover:-translate-y-1;
   }
 
   .btn-primary {
-    @apply px-6 py-3 rounded-md font-medium transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm;
+    @apply px-6 py-3 rounded-md font-medium transition-all duration-300 bg-primary text-primary-foreground shadow-md;
+    background: linear-gradient(135deg, hsl(38 95% 50%) 0%, hsl(30 90% 45%) 100%);
+  }
+
+  .btn-primary:hover {
+    @apply shadow-lg;
+    background: linear-gradient(135deg, hsl(38 95% 55%) 0%, hsl(30 90% 50%) 100%);
+    transform: translateY(-2px);
   }
 
   .btn-outline {
-    @apply px-6 py-3 rounded-md font-medium border border-border text-foreground transition-all duration-300 hover:bg-secondary hover:border-primary/30;
+    @apply px-6 py-3 rounded-md font-medium border-2 border-primary text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground;
   }
 
   .floating-btn {
@@ -98,7 +122,7 @@
   }
 
   .nav-link {
-    @apply px-3 py-2 text-muted-foreground transition-colors duration-300 hover:text-foreground text-sm;
+    @apply px-3 py-2 text-muted-foreground transition-colors duration-300 hover:text-primary text-sm;
   }
 
   .nav-link.active {
@@ -106,14 +130,25 @@
   }
 
   .input-field {
-    @apply w-full px-4 py-3 rounded-md bg-input border border-border focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all duration-300 text-foreground placeholder:text-muted-foreground;
+    @apply w-full px-4 py-3 rounded-md bg-input border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 text-foreground placeholder:text-muted-foreground;
   }
 
   .bg-grid {
     background-image: 
-      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
-    background-size: 80px 80px;
+      linear-gradient(to right, hsl(220 20% 90% / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(220 20% 90% / 0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(220 30% 15%) 0%, hsl(220 25% 22%) 50%, hsl(220 20% 18%) 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(38 95% 50%) 0%, hsl(30 90% 60%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 
