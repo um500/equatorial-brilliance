@@ -10,17 +10,12 @@ import {
   Server, 
   Shield,
   CheckCircle,
-  Users,
-  Award,
-  Clock,
-  Target,
-  Eye,
   MapPin,
   Phone,
   Mail,
   Send,
   AlertCircle,
-  Calendar,
+  Clock,
   Linkedin,
   Facebook,
   Instagram,
@@ -28,6 +23,8 @@ import {
 } from 'lucide-react';
 import { submitContactForm, ContactFormData } from '@/utils/googleSheetApi';
 import { z } from 'zod';
+import heroImage from '@/assets/images/hero-image.jpg';
+import aboutImage from '@/assets/images/about-image.jpg';
 
 // Navigation links
 const navLinks = [
@@ -163,16 +160,21 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-background via-secondary/30 to-background">
-        <div className="absolute inset-0 bg-grid opacity-30" />
+    <div className="min-h-screen bg-background">
+      {/* Hero Section - Full Width with Image */}
+      <section id="home" className="relative min-h-[90vh] flex items-center">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <img src={heroImage} alt="IT Services" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/70" />
+        </div>
+        
         <div className="container mx-auto px-4 relative z-10 pt-20">
-          <div className="max-w-3xl">
+          <div className="max-w-2xl">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-primary text-sm font-medium mb-4"
+              className="text-primary font-medium mb-4"
             >
               IT Solutions Provider in UAE
             </motion.p>
@@ -180,17 +182,17 @@ const LandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl font-display font-bold leading-tight mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6 text-foreground"
             >
-              Transform Your Business with Technology
+              Complete IT Services & Support Solutions
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-lg text-muted-foreground mb-8 max-w-xl"
+              className="text-lg text-muted-foreground mb-8"
             >
-              From web development to digital marketing, we deliver IT solutions that drive growth and efficiency.
+              From web development to digital marketing, we deliver comprehensive IT solutions that drive growth for businesses across the UAE.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -199,7 +201,7 @@ const LandingPage = () => {
               className="flex flex-wrap gap-4"
             >
               <a href="#contact" className="btn-primary inline-flex items-center gap-2">
-                Get Free Consultation <ArrowRight size={18} />
+                Get In Touch <ArrowRight size={18} />
               </a>
               <a href="#services" className="btn-outline">
                 Our Services
@@ -210,75 +212,74 @@ const LandingPage = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="section bg-secondary/50">
+      <section id="about" className="section">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              className="order-2 lg:order-1"
             >
-              <p className="text-primary text-sm font-medium mb-3">About Us</p>
-              <h2 className="section-title mb-4">Your Trusted IT Partner</h2>
-              <p className="text-muted-foreground mb-6">
-                Equatorial IT Services FZ-LLC is a registered company in Ras Al Khaimah, UAE, 
-                specializing in comprehensive IT solutions for businesses of all sizes.
+              <p className="text-primary font-medium mb-3">About Us</p>
+              <h2 className="section-title mb-6">Your Trusted IT Partner in the UAE</h2>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                Equatorial IT Services FZ-LLC is a complete IT service and support provider based in Ras Al Khaimah, UAE. We offer comprehensive solutions from web development to digital marketing, helping businesses succeed in the digital landscape.
               </p>
-              <p className="text-muted-foreground mb-8">
-                Our team of certified professionals brings years of experience in web development, 
-                digital marketing, SEO, branding, and IT support.
+              <p className="text-muted-foreground mb-8 leading-relaxed">
+                Our team of certified professionals brings years of experience and expertise, delivering reliable, quality IT solutions tailored to your business needs.
               </p>
-              <div className="space-y-3">
-                {['Experienced IT professionals', 'Customized solutions', '24/7 support', 'Transparent pricing'].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary" />
-                    <span className="text-sm">{item}</span>
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {[
+                  { label: 'Expert Team', icon: CheckCircle },
+                  { label: 'Quality Service', icon: CheckCircle },
+                  { label: '24/7 Support', icon: CheckCircle },
+                  { label: 'Fair Pricing', icon: CheckCircle },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <item.icon className="w-5 h-5 text-primary" />
+                    <span className="text-sm font-medium">{item.label}</span>
                   </div>
                 ))}
               </div>
+              <a href="#contact" className="btn-primary inline-flex items-center gap-2">
+                Contact Us <ArrowRight size={18} />
+              </a>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="grid grid-cols-2 gap-4"
+              className="order-1 lg:order-2"
             >
-              <div className="glass-card p-6 text-center">
-                <Target className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold mb-2">Mission</h4>
-                <p className="text-xs text-muted-foreground">Empowering businesses with innovative IT solutions</p>
-              </div>
-              <div className="glass-card p-6 text-center">
-                <Eye className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold mb-2">Vision</h4>
-                <p className="text-xs text-muted-foreground">To be the most trusted IT partner in UAE</p>
-              </div>
-              <div className="glass-card p-6 text-center col-span-2">
-                <MapPin className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold mb-2">Location</h4>
-                <p className="text-xs text-muted-foreground">AL Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE</p>
-              </div>
+              <img 
+                src={aboutImage} 
+                alt="About Equatorial IT" 
+                className="w-full rounded-lg shadow-lg"
+              />
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="section">
+      <section id="services" className="section bg-secondary/30">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-14"
           >
-            <p className="text-primary text-sm font-medium mb-3">Our Services</p>
+            <p className="text-primary font-medium mb-3">Our Services</p>
             <h2 className="section-title">What We Offer</h2>
-            <p className="section-subtitle mx-auto">Comprehensive IT solutions to help your business succeed.</p>
+            <p className="section-subtitle mx-auto mt-4">
+              Comprehensive IT solutions to help your business grow and succeed in the digital world.
+            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {services.map((service, i) => (
               <motion.div
                 key={service.title}
@@ -286,11 +287,13 @@ const LandingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="service-card"
+                className="bg-background rounded-lg p-6 shadow-sm border border-border hover:shadow-md hover:border-primary/30 transition-all duration-300"
               >
-                <service.icon className="w-10 h-10 text-primary mb-4" />
-                <h3 className="font-display font-semibold mb-2">{service.title}</h3>
-                <p className="text-sm text-muted-foreground">{service.description}</p>
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <service.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-display font-semibold text-lg mb-2">{service.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
               </motion.div>
             ))}
           </div>
@@ -298,19 +301,19 @@ const LandingPage = () => {
       </section>
 
       {/* Blog Section */}
-      <section id="blog" className="section bg-secondary/50">
+      <section id="blog" className="section">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-14"
           >
-            <p className="text-primary text-sm font-medium mb-3">Blog</p>
+            <p className="text-primary font-medium mb-3">Blog</p>
             <h2 className="section-title">Latest Insights</h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-8">
             {blogPosts.map((post, i) => (
               <motion.article
                 key={i}
@@ -318,7 +321,7 @@ const LandingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card overflow-hidden group cursor-pointer"
+                className="bg-background rounded-lg overflow-hidden shadow-sm border border-border hover:shadow-md transition-all duration-300 group cursor-pointer"
               >
                 <div className="aspect-video overflow-hidden">
                   <img
@@ -327,12 +330,9 @@ const LandingPage = () => {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="p-5">
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                    <Calendar size={12} />
-                    {post.date}
-                  </div>
-                  <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
+                <div className="p-6">
+                  <p className="text-xs text-muted-foreground mb-2">{post.date}</p>
+                  <h3 className="font-semibold mb-3 group-hover:text-primary transition-colors">{post.title}</h3>
                   <p className="text-sm text-muted-foreground">{post.excerpt}</p>
                 </div>
               </motion.article>
@@ -342,40 +342,44 @@ const LandingPage = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="section">
+      <section id="contact" className="section bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <p className="text-primary font-medium mb-3">Contact Us</p>
+            <h2 className="section-title">Get In Touch</h2>
+            <p className="section-subtitle mx-auto mt-4">
+              Have a project in mind? We'd love to hear from you.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <p className="text-primary text-sm font-medium mb-3">Contact Us</p>
-              <h2 className="section-title mb-4">Let's Talk</h2>
-              <p className="text-muted-foreground mb-8">
-                Have a project in mind? Get in touch and let's discuss how we can help.
-              </p>
-
-              <div className="space-y-4 mb-8">
+              <div className="space-y-6 mb-8">
                 {[
-                  { icon: MapPin, text: 'AL Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE' },
-                  { icon: Phone, text: '+971 00 000 0000' },
-                  { icon: Mail, text: 'info@equatorialit.com' },
-                  { icon: Clock, text: 'Sun - Thu: 9AM - 6PM' },
+                  { icon: MapPin, label: 'Address', text: 'FDRK4555, Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE' },
+                  { icon: Phone, label: 'Phone', text: '+971 00 000 0000' },
+                  { icon: Mail, label: 'Email', text: 'info@equatorialit.com' },
+                  { icon: Clock, label: 'Working Hours', text: 'Sunday - Thursday: 9AM - 6PM' },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <item.icon className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-muted-foreground">{item.text}</span>
+                  <div key={i} className="flex gap-4">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-medium mb-1">{item.label}</p>
+                      <p className="text-sm text-muted-foreground">{item.text}</p>
+                    </div>
                   </div>
                 ))}
-              </div>
-
-              <div className="glass-card p-6">
-                <h4 className="font-semibold mb-3">Equatorial IT Services FZ-LLC</h4>
-                <p className="text-sm text-muted-foreground">
-                  FDRK4555, Compass Building, Al Shohada Road,<br />
-                  AL Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE
-                </p>
               </div>
             </motion.div>
 
@@ -384,7 +388,7 @@ const LandingPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <form onSubmit={handleSubmit} className="glass-card p-6 space-y-4">
+              <form onSubmit={handleSubmit} className="bg-background rounded-lg p-8 shadow-sm border border-border space-y-5">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <input
@@ -464,7 +468,7 @@ const LandingPage = () => {
                 </button>
                 {submitStatus !== 'idle' && (
                   <div className={`p-3 rounded-md flex items-center gap-2 text-sm ${
-                    submitStatus === 'success' ? 'bg-green-500/10 text-green-400' : 'bg-destructive/10 text-destructive'
+                    submitStatus === 'success' ? 'bg-green-50 text-green-600 border border-green-200' : 'bg-red-50 text-red-600 border border-red-200'
                   }`}>
                     {submitStatus === 'success' ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
                     {statusMessage}
@@ -477,48 +481,48 @@ const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-border">
+      <footer className="py-16 bg-foreground text-background">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="grid md:grid-cols-4 gap-10 mb-10">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center font-display font-bold text-primary-foreground text-xs">
+                <div className="w-10 h-10 rounded-md bg-primary flex items-center justify-center font-display font-bold text-primary-foreground">
                   EQ
                 </div>
-                <span className="font-display font-medium">Equatorial IT</span>
+                <span className="font-display font-semibold text-lg">Equatorial IT</span>
               </div>
-              <p className="text-sm text-muted-foreground">
-                Transforming businesses through innovative IT solutions.
+              <p className="text-sm text-background/70 leading-relaxed">
+                Complete IT service and support provider offering comprehensive solutions for businesses in the UAE.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-sm">Services</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <h4 className="font-semibold mb-4">Services</h4>
+              <ul className="space-y-2 text-sm text-background/70">
                 {['Web Development', 'Digital Marketing', 'SEO Services', 'IT Support'].map((s) => (
-                  <li key={s}><a href="#services" className="hover:text-foreground transition-colors">{s}</a></li>
+                  <li key={s}><a href="#services" className="hover:text-background transition-colors">{s}</a></li>
                 ))}
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-sm">Quick Links</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <h4 className="font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-sm text-background/70">
                 {navLinks.map((link) => (
-                  <li key={link.href}><a href={link.href} className="hover:text-foreground transition-colors">{link.name}</a></li>
+                  <li key={link.href}><a href={link.href} className="hover:text-background transition-colors">{link.name}</a></li>
                 ))}
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-sm">Connect</h4>
-              <div className="flex gap-2">
+              <h4 className="font-semibold mb-4">Connect With Us</h4>
+              <div className="flex gap-3">
                 {[Facebook, Instagram, Linkedin, Twitter].map((Icon, i) => (
-                  <a key={i} href="#" className="w-9 h-9 rounded-md bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
-                    <Icon size={16} />
+                  <a key={i} href="#" className="w-10 h-10 rounded-md bg-background/10 flex items-center justify-center text-background/70 hover:bg-background/20 hover:text-background transition-colors">
+                    <Icon size={18} />
                   </a>
                 ))}
               </div>
             </div>
           </div>
-          <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
+          <div className="border-t border-background/10 pt-8 text-center text-sm text-background/60">
             © {new Date().getFullYear()} Equatorial IT Services FZ-LLC. All rights reserved.
           </div>
         </div>
