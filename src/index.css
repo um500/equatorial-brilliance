@@ -8,47 +8,42 @@
 
 @layer base {
   :root {
-    /* Attractive gradient theme inspired by it-serve.com */
-    --background: 220 15% 96%;
-    --foreground: 220 25% 15%;
+    /* Cyber-duck inspired dark teal theme */
+    --background: 192 25% 18%;
+    --foreground: 180 10% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 25% 15%;
+    --card: 192 30% 22%;
+    --card-foreground: 180 10% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 15%;
+    --popover: 192 30% 20%;
+    --popover-foreground: 180 10% 95%;
 
-    /* Orange/Gold accent like it-serve.com */
-    --primary: 38 95% 50%;
+    /* Warm orange accent */
+    --primary: 25 85% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 20% 92%;
-    --secondary-foreground: 220 25% 20%;
+    --secondary: 192 20% 28%;
+    --secondary-foreground: 180 10% 90%;
 
-    --muted: 220 15% 90%;
-    --muted-foreground: 220 10% 40%;
+    --muted: 192 20% 25%;
+    --muted-foreground: 180 10% 65%;
 
-    /* Teal accent for variety */
-    --accent: 195 80% 40%;
+    /* Teal accent */
+    --accent: 175 50% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 85%;
-    --input: 0 0% 100%;
-    --ring: 38 95% 50%;
+    --border: 192 20% 30%;
+    --input: 192 25% 25%;
+    --ring: 25 85% 55%;
 
     --radius: 0.5rem;
 
-    /* Custom gradients */
-    --glass-bg: 0 0% 100% / 0.95;
-    --glass-border: 220 15% 80%;
-    
-    /* Gradient colors */
-    --gradient-start: 220 25% 96%;
-    --gradient-end: 210 30% 92%;
-    --gradient-accent: 38 95% 50%;
+    /* Custom */
+    --glass-bg: 192 30% 22% / 0.95;
+    --glass-border: 192 20% 35%;
   }
 
   * {
@@ -62,7 +57,7 @@
   body {
     @apply text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(145deg, hsl(220 30% 96%) 0%, hsl(35 40% 96%) 25%, hsl(200 25% 95%) 50%, hsl(280 20% 96%) 75%, hsl(220 25% 95%) 100%);
+    background: hsl(192 25% 18%);
     min-height: 100vh;
   }
 
@@ -73,21 +68,14 @@
 
 @layer components {
   .glass-card {
-    @apply rounded-xl border bg-card shadow-sm;
-    border-color: hsl(var(--glass-border));
+    @apply rounded-xl border shadow-sm;
+    background: hsl(192 30% 22%);
+    border-color: hsl(192 20% 30%);
     backdrop-filter: blur(10px);
   }
 
   .section {
     @apply py-12 md:py-20 lg:py-24;
-  }
-
-  .section-gradient {
-    background: linear-gradient(180deg, hsl(220 25% 97%) 0%, hsl(210 30% 95%) 100%);
-  }
-
-  .section-gradient-alt {
-    background: linear-gradient(180deg, hsl(210 30% 95%) 0%, hsl(220 25% 97%) 100%);
   }
 
   .section-title {
@@ -99,22 +87,35 @@
   }
 
   .service-card {
-    @apply glass-card p-6 transition-all duration-300 hover:shadow-xl hover:border-primary/40 hover:-translate-y-1;
+    @apply glass-card p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    border-color: hsl(192 20% 35%);
+  }
+
+  .service-card:hover {
+    border-color: hsl(25 85% 55%);
   }
 
   .btn-primary {
-    @apply px-6 py-3 rounded-md font-medium transition-all duration-300 bg-primary text-primary-foreground shadow-md;
-    background: linear-gradient(135deg, hsl(38 95% 50%) 0%, hsl(30 90% 45%) 100%);
+    @apply px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md;
+    background: linear-gradient(135deg, hsl(25 85% 55%) 0%, hsl(20 80% 50%) 100%);
+    color: white;
   }
 
   .btn-primary:hover {
     @apply shadow-lg;
-    background: linear-gradient(135deg, hsl(38 95% 55%) 0%, hsl(30 90% 50%) 100%);
+    background: linear-gradient(135deg, hsl(25 85% 60%) 0%, hsl(20 80% 55%) 100%);
     transform: translateY(-2px);
   }
 
   .btn-outline {
-    @apply px-6 py-3 rounded-md font-medium border-2 border-primary text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground;
+    @apply px-6 py-3 rounded-md font-medium border-2 transition-all duration-300;
+    border-color: hsl(25 85% 55%);
+    color: hsl(25 85% 55%);
+  }
+
+  .btn-outline:hover {
+    background: hsl(25 85% 55%);
+    color: white;
   }
 
   .floating-btn {
@@ -122,30 +123,44 @@
   }
 
   .nav-link {
-    @apply px-3 py-2 text-muted-foreground transition-colors duration-300 hover:text-primary text-sm;
+    @apply px-3 py-2 transition-colors duration-300 text-sm;
+    color: hsl(180 10% 70%);
+  }
+
+  .nav-link:hover {
+    color: hsl(25 85% 55%);
   }
 
   .nav-link.active {
-    @apply text-primary font-medium;
+    color: hsl(25 85% 55%);
+    font-weight: 500;
   }
 
   .input-field {
-    @apply w-full px-4 py-3 rounded-md bg-input border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 text-foreground placeholder:text-muted-foreground;
+    @apply w-full px-4 py-3 rounded-md border outline-none transition-all duration-300;
+    background: hsl(192 25% 22%);
+    border-color: hsl(192 20% 30%);
+    color: hsl(180 10% 95%);
+  }
+
+  .input-field::placeholder {
+    color: hsl(180 10% 50%);
+  }
+
+  .input-field:focus {
+    border-color: hsl(25 85% 55%);
+    box-shadow: 0 0 0 3px hsl(25 85% 55% / 0.2);
   }
 
   .bg-grid {
     background-image: 
-      linear-gradient(to right, hsl(220 20% 90% / 0.5) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(220 20% 90% / 0.5) 1px, transparent 1px);
+      linear-gradient(to right, hsl(192 20% 25% / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(192 20% 25% / 0.5) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
-  .hero-gradient {
-    background: linear-gradient(135deg, hsl(220 30% 15%) 0%, hsl(220 25% 22%) 50%, hsl(220 20% 18%) 100%);
-  }
-
   .text-gradient {
-    background: linear-gradient(135deg, hsl(38 95% 50%) 0%, hsl(30 90% 60%) 100%);
+    background: linear-gradient(135deg, hsl(25 85% 55%) 0%, hsl(35 90% 60%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
