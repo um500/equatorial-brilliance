@@ -1,32 +1,45 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Services', path: '/services' },
-  { name: 'Blog', path: '/blog' },
-  { name: 'Contact', path: '/contact' },
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Services', href: '#services' },
+  { name: 'Blog', href: '#blog' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Update active section based on scroll position
+      const sections = navLinks.map(link => link.href.replace('#', ''));
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section);
+        if (element && window.scrollY >= element.offsetTop - 100) {
+          setActiveSection(section);
+          break;
+        }
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
+  const scrollToSection = (href: string) => {
+    const element = document.getElementById(href.replace('#', ''));
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
     setIsMobileMenuOpen(false);
-  }, [location]);
+  };
 
   return (
     <motion.nav
@@ -34,73 +47,71 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass-card py-3' : 'py-5 bg-transparent'
+        isScrolled ? 'glass-card py-3' : 'py-4 bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center font-display font-bold text-primary-foreground">
+        <a href="#home" onClick={() => scrollToSection('#home')} className="flex items-center gap-2">
+          <div className="w-9 h-9 rounded-md bg-primary flex items-center justify-center font-display font-bold text-primary-foreground text-sm">
             EQ
           </div>
-          <span className="hidden sm:block font-display font-semibold text-lg">
-            Equatorial <span className="text-primary">IT</span>
+          <span className="hidden sm:block font-display font-medium">
+            Equatorial IT
           </span>
-        </Link>
+        </a>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`nav-link ${location.pathname === link.path ? 'active text-primary' : ''}`}
+            <button
+              key={link.href}
+              onClick={() => scrollToSection(link.href)}
+              className={`nav-link ${activeSection === link.href.replace('#', '') ? 'active' : ''}`}
             >
               {link.name}
-            </Link>
+            </button>
           ))}
         </div>
 
-        {/* CTA Button */}
-        <Link to="/contact" className="hidden md:block btn-primary text-sm">
+        <button
+          onClick={() => scrollToSection('#contact')}
+          className="hidden md:block btn-primary text-sm py-2"
+        >
           Get Started
-        </Link>
+        </button>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="md:hidden p-2 text-foreground"
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-card mt-2 mx-4 rounded-xl overflow-hidden"
+            className="md:hidden glass-card mt-2 mx-4 rounded-lg overflow-hidden"
           >
-            <div className="p-4 flex flex-col gap-2">
+            <div className="p-4 flex flex-col gap-1">
               {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`px-4 py-3 rounded-lg transition-colors ${
-                    location.pathname === link.path
+                <button
+                  key={link.href}
+                  onClick={() => scrollToSection(link.href)}
+                  className={`px-4 py-3 rounded-md text-left transition-colors ${
+                    activeSection === link.href.replace('#', '')
                       ? 'bg-primary/10 text-primary'
                       : 'text-muted-foreground hover:bg-secondary'
                   }`}
                 >
                   {link.name}
-                </Link>
+                </button>
               ))}
-              <Link to="/contact" className="btn-primary text-center mt-2">
+              <button onClick={() => scrollToSection('#contact')} className="btn-primary text-center mt-2 text-sm">
                 Get Started
-              </Link>
+              </button>
             </div>
           </motion.div>
         )}

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Phone } from 'lucide-react';
 
 const CallButton = () => {
-  const phoneNumber = '+971000000000'; // Replace with actual number
+  const phoneNumber = '+971000000000';
 
   return (
     <motion.a
@@ -10,10 +10,10 @@ const CallButton = () => {
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       transition={{ delay: 1.2, type: 'spring', stiffness: 200 }}
-      className="floating-btn bottom-6 right-4 gradient-primary text-primary-foreground hover:glow"
+      className="floating-btn bottom-6 right-4 bg-primary text-primary-foreground"
       aria-label="Call us"
     >
-      <Phone size={24} />
+      <Phone size={20} />
     </motion.a>
   );
 };
