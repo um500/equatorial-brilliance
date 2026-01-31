@@ -121,6 +121,14 @@ const whyChooseUs = [
   { icon: BarChart3, title: 'Proven Results', description: 'Track record of delivering measurable growth and ROI for our clients.' },
 ];
 
+// Social Links
+const socialLinks = [
+  { icon: Facebook, link: "https://facebook.com" },
+  { icon: Instagram, link: "https://instagram.com" },
+  { icon: Linkedin, link: "https://linkedin.com" },
+  { icon: Twitter, link: "https://twitter.com" },
+];
+
 // Blog posts
 const blogPosts = [
   {
@@ -621,11 +629,17 @@ const LandingPage = () => {
                 Complete IT service and support provider offering comprehensive solutions for businesses in the UAE.
               </p>
               <div className="flex gap-2 md:gap-3">
-                {[Facebook, Instagram, Linkedin, Twitter].map((Icon, i) => (
-                  <span key={i} className="w-8 h-8 md:w-9 md:h-9 rounded-md bg-background/10 flex items-center justify-center text-background/70 hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer">
+                {socialLinks.map(({ icon: Icon, link }, i) => (
+                  <a
+                    key={i}
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 md:w-9 md:h-9 rounded-md bg-background/10 flex items-center justify-center text-background/70 hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
+                  >
                     <Icon size={14} className="md:hidden" />
                     <Icon size={16} className="hidden md:block" />
-                  </span>
+                  </a>
                 ))}
               </div>
             </div>
