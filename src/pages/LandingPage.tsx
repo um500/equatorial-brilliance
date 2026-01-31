@@ -344,19 +344,23 @@ const LandingPage = () => {
       </section>
 
       {/* All Services Grid */}
-      <section id="services" className="section">
+      <section id="services" className="section bg-secondary/20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-14"
+            className="text-center mb-10 md:mb-14"
           >
-            <p className="text-primary font-medium mb-3">Our Services</p>
+            <p className="text-primary font-medium mb-2 md:mb-3 text-sm md:text-base">Our Services</p>
             <h2 className="section-title">Complete IT Solutions</h2>
+            <p className="section-subtitle mx-auto mt-3 md:mt-4 text-sm md:text-base">
+              We offer a wide range of professional IT services tailored to meet your business needs. 
+              From development to marketing, we've got you covered.
+            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
             {services.map((service, i) => (
               <motion.div
                 key={service.title}
@@ -364,16 +368,27 @@ const LandingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="bg-background rounded-lg p-6 shadow-sm border border-border hover:shadow-lg hover:border-primary/30 transition-all duration-300 group"
+                className="bg-background rounded-xl p-4 md:p-6 shadow-sm border border-border hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <service.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground" />
+                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3 md:mb-4 group-hover:bg-primary transition-colors duration-300">
+                  <service.icon className="w-5 h-5 md:w-7 md:h-7 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">{service.title}</h3>
-                <p className="text-sm text-muted-foreground">{service.description}</p>
+                <h3 className="font-semibold text-sm md:text-lg mb-1 md:mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{service.description}</p>
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mt-8 md:mt-12"
+          >
+            <a href="#contact" className="btn-primary inline-flex items-center gap-2 text-sm md:text-base">
+              Get a Free Quote <ArrowRight size={18} />
+            </a>
+          </motion.div>
         </div>
       </section>
 
