@@ -55,16 +55,16 @@ const Navbar = () => {
           <a 
             href="#home" 
             onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }} 
-            className="flex items-center py-4 md:py-5 pr-8"
+            className="flex items-center py-4 md:py-5"
           >
             <span className="font-display font-bold text-xl md:text-2xl text-white italic">
               Equatorial IT
             </span>
           </a>
 
-          {/* Desktop Nav Links - Left aligned after logo */}
-          <div className="hidden lg:flex items-center flex-1">
-            {navLinks.map((link, index) => (
+          {/* Desktop Nav Links + CTA - Right aligned */}
+          <div className="hidden lg:flex items-center">
+            {navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
@@ -82,16 +82,16 @@ const Navbar = () => {
                 {link.name}
               </button>
             ))}
+            
+            {/* CTA Button */}
+            <button
+              onClick={() => scrollToSection('#contact')}
+              className="ml-4 px-6 xl:px-8 py-3 text-sm md:text-base font-bold text-white transition-all duration-300 hover:brightness-110 rounded-sm"
+              style={{ background: 'linear-gradient(135deg, hsl(25 85% 55%) 0%, hsl(20 80% 50%) 100%)' }}
+            >
+              Get In Touch
+            </button>
           </div>
-
-          {/* CTA Button - Right */}
-          <button
-            onClick={() => scrollToSection('#contact')}
-            className="hidden lg:block px-6 xl:px-8 py-4 text-sm md:text-base font-bold text-white transition-all duration-300 hover:brightness-110 rounded-sm"
-            style={{ background: 'linear-gradient(135deg, hsl(25 85% 55%) 0%, hsl(20 80% 50%) 100%)' }}
-          >
-            Get In Touch
-          </button>
 
           {/* Mobile Menu Button */}
           <button
