@@ -215,9 +215,9 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden" style={{ background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(38 35% 96%) 20%, hsl(200 30% 95%) 45%, hsl(270 25% 96%) 70%, hsl(220 25% 95%) 100%)' }}>
+    <div className="min-h-screen overflow-x-hidden bg-background">
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-32" style={{ background: 'linear-gradient(135deg, hsl(220 35% 12%) 0%, hsl(215 30% 18%) 30%, hsl(35 50% 20%) 70%, hsl(25 45% 18%) 100%)' }}>
+      <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-32" style={{ background: 'linear-gradient(135deg, hsl(192 30% 16%) 0%, hsl(192 25% 20%) 50%, hsl(192 20% 22%) 100%)' }}>
         <div className="absolute inset-0 opacity-30">
           <img src={heroImage} alt="IT Services" className="w-full h-full object-cover" />
         </div>
@@ -404,13 +404,16 @@ const LandingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="rounded-xl p-4 md:p-6 shadow-md border border-white/50 hover:shadow-2xl hover:border-primary/50 hover:-translate-y-2 transition-all duration-300 group cursor-pointer"
-                style={{ background: 'linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(35 30% 98%) 50%, hsl(220 20% 98%) 100%)' }}
+                className="rounded-xl p-4 md:p-6 shadow-lg border hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer"
+                style={{ 
+                  background: 'linear-gradient(145deg, hsl(192 30% 24%) 0%, hsl(192 25% 20%) 100%)',
+                  borderColor: 'hsl(192 20% 32%)'
+                }}
               >
-                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-all duration-300" style={{ background: 'linear-gradient(135deg, hsl(38 95% 50%) 0%, hsl(30 90% 45%) 100%)' }}>
+                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-all duration-300" style={{ background: 'linear-gradient(135deg, hsl(25 85% 55%) 0%, hsl(20 80% 50%) 100%)' }}>
                   <service.icon className="w-5 h-5 md:w-7 md:h-7 text-white" />
                 </div>
-                <h3 className="font-semibold text-sm md:text-lg mb-1 md:mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
+                <h3 className="font-semibold text-sm md:text-lg mb-1 md:mb-2 group-hover:text-primary transition-colors text-foreground">{service.title}</h3>
                 <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{service.description}</p>
               </motion.div>
             ))}
