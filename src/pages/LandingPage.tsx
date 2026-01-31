@@ -206,27 +206,6 @@ const LandingPage = () => {
               </a>
             </motion.div>
           </div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-3xl"
-          >
-            {[
-              { icon: Users, value: '500+', label: 'Clients' },
-              { icon: Award, value: '1000+', label: 'Projects' },
-              { icon: Clock, value: '10+', label: 'Years' },
-              { icon: CheckCircle, value: '99%', label: 'Satisfaction' },
-            ].map((stat, i) => (
-              <div key={i} className="glass-card p-4 text-center">
-                <stat.icon className="w-6 h-6 text-primary mx-auto mb-2" />
-                <div className="text-2xl font-display font-bold">{stat.value}</div>
-                <div className="text-xs text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
