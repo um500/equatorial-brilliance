@@ -85,11 +85,8 @@ const Navbar = () => {
         }`}
       >
         <div className="container mx-auto px-4 flex items-center justify-between">
-          <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }} className="flex items-center gap-2">
-            <div className="w-9 h-9 md:w-10 md:h-10 rounded-md bg-primary flex items-center justify-center font-display font-bold text-primary-foreground text-sm md:text-base">
-              EQ
-            </div>
-            <span className="font-display font-semibold text-base md:text-lg">
+          <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }} className="flex items-center">
+            <span className="font-display font-bold text-lg md:text-xl text-foreground">
               Equatorial IT
             </span>
           </a>

@@ -570,9 +570,8 @@ const LandingPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mb-8 md:mb-10">
             <div className="col-span-2 md:col-span-1">
-              <div className="flex items-center gap-2 mb-3 md:mb-4">
-                <div className="w-9 h-9 md:w-10 md:h-10 rounded-md bg-primary flex items-center justify-center font-display font-bold text-primary-foreground text-sm md:text-base">EQ</div>
-                <span className="font-display font-semibold text-base md:text-lg">Equatorial IT</span>
+              <div className="mb-3 md:mb-4">
+                <span className="font-display font-bold text-lg md:text-xl">Equatorial IT</span>
               </div>
               <p className="text-xs md:text-sm text-background/70 leading-relaxed mb-3 md:mb-4">
                 Complete IT service and support provider offering comprehensive solutions for businesses in the UAE.
