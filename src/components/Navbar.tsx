@@ -19,7 +19,6 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      // Update active section based on scroll position
       const sections = navLinks.map(link => link.href.replace('#', ''));
       for (const section of sections.reverse()) {
         const element = document.getElementById(section);
@@ -47,15 +46,15 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass-card py-3' : 'py-4 bg-transparent'
+        isScrolled ? 'bg-background shadow-sm py-3' : 'py-4 bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <a href="#home" onClick={() => scrollToSection('#home')} className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-md bg-primary flex items-center justify-center font-display font-bold text-primary-foreground text-sm">
+          <div className="w-10 h-10 rounded-md bg-primary flex items-center justify-center font-display font-bold text-primary-foreground">
             EQ
           </div>
-          <span className="hidden sm:block font-display font-medium">
+          <span className="hidden sm:block font-display font-semibold text-lg">
             Equatorial IT
           </span>
         </a>
@@ -74,16 +73,16 @@ const Navbar = () => {
 
         <button
           onClick={() => scrollToSection('#contact')}
-          className="hidden md:block btn-primary text-sm py-2"
+          className="hidden md:block btn-primary text-sm py-2.5"
         >
-          Get Started
+          Get In Touch
         </button>
 
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="md:hidden p-2 text-foreground"
         >
-          {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -93,7 +92,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-card mt-2 mx-4 rounded-lg overflow-hidden"
+            className="md:hidden bg-background shadow-lg mt-2 mx-4 rounded-lg overflow-hidden border border-border"
           >
             <div className="p-4 flex flex-col gap-1">
               {navLinks.map((link) => (
@@ -102,15 +101,15 @@ const Navbar = () => {
                   onClick={() => scrollToSection(link.href)}
                   className={`px-4 py-3 rounded-md text-left transition-colors ${
                     activeSection === link.href.replace('#', '')
-                      ? 'bg-primary/10 text-primary'
+                      ? 'bg-primary/10 text-primary font-medium'
                       : 'text-muted-foreground hover:bg-secondary'
                   }`}
                 >
                   {link.name}
                 </button>
               ))}
-              <button onClick={() => scrollToSection('#contact')} className="btn-primary text-center mt-2 text-sm">
-                Get Started
+              <button onClick={() => scrollToSection('#contact')} className="btn-primary text-center mt-2">
+                Get In Touch
               </button>
             </div>
           </motion.div>
