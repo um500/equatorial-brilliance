@@ -2,47 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Equatorial IT Services - Professional Muted Theme */
+/* Equatorial IT Services - Clean Light Theme */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Professional dark theme - muted tones */
-    --background: 220 20% 8%;
-    --foreground: 220 10% 92%;
+    /* Clean light theme */
+    --background: 0 0% 100%;
+    --foreground: 220 20% 15%;
 
-    --card: 220 20% 11%;
-    --card-foreground: 220 10% 92%;
+    --card: 220 20% 97%;
+    --card-foreground: 220 20% 15%;
 
-    --popover: 220 20% 11%;
-    --popover-foreground: 220 10% 92%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 15%;
 
-    /* Subtle blue-gray accent */
-    --primary: 210 30% 55%;
-    --primary-foreground: 220 20% 8%;
+    /* Deep blue accent */
+    --primary: 220 70% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 16%;
-    --secondary-foreground: 220 10% 85%;
+    --secondary: 220 15% 94%;
+    --secondary-foreground: 220 20% 25%;
 
-    --muted: 220 15% 16%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 210 25% 45%;
-    --accent-foreground: 220 10% 92%;
+    --accent: 220 70% 45%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 65% 50%;
-    --destructive-foreground: 220 10% 92%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 14%;
-    --ring: 210 30% 55%;
+    --border: 220 15% 90%;
+    --input: 220 15% 96%;
+    --ring: 220 70% 45%;
 
     --radius: 0.5rem;
 
-    /* Custom variables */
-    --glass-bg: 220 20% 12% / 0.8;
-    --glass-border: 220 15% 22% / 0.5;
+    /* Custom */
+    --glass-bg: 220 20% 98% / 0.9;
+    --glass-border: 220 15% 88%;
   }
 
   * {
@@ -64,65 +64,56 @@
 }
 
 @layer components {
-  /* Glass card - subtle */
   .glass-card {
-    @apply rounded-lg border backdrop-blur-sm;
-    background: hsl(var(--glass-bg));
+    @apply rounded-lg border bg-card;
     border-color: hsl(var(--glass-border));
   }
 
-  /* Section styling */
   .section {
-    @apply py-20 md:py-28;
+    @apply py-20 md:py-24;
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-display font-bold mb-4;
+    @apply text-3xl md:text-4xl font-display font-bold mb-4 text-foreground;
   }
 
   .section-subtitle {
     @apply text-muted-foreground max-w-2xl;
   }
 
-  /* Service card */
   .service-card {
-    @apply glass-card p-6 transition-all duration-300 hover:border-primary/40;
+    @apply glass-card p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30;
   }
 
-  /* Button styles */
   .btn-primary {
-    @apply px-6 py-3 rounded-md font-medium transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90;
+    @apply px-6 py-3 rounded-md font-medium transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm;
   }
 
   .btn-outline {
-    @apply px-6 py-3 rounded-md font-medium border border-primary/50 text-foreground transition-all duration-300 hover:bg-primary/10;
+    @apply px-6 py-3 rounded-md font-medium border border-border text-foreground transition-all duration-300 hover:bg-secondary hover:border-primary/30;
   }
 
-  /* Floating button */
   .floating-btn {
     @apply fixed z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110;
   }
 
-  /* Nav link */
   .nav-link {
     @apply px-3 py-2 text-muted-foreground transition-colors duration-300 hover:text-foreground text-sm;
   }
 
   .nav-link.active {
-    @apply text-primary;
+    @apply text-primary font-medium;
   }
 
-  /* Input field */
   .input-field {
-    @apply w-full px-4 py-3 rounded-md bg-input border border-border focus:border-primary/50 focus:ring-1 focus:ring-primary/20 outline-none transition-all duration-300 text-foreground;
+    @apply w-full px-4 py-3 rounded-md bg-input border border-border focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all duration-300 text-foreground placeholder:text-muted-foreground;
   }
 
-  /* Subtle grid background */
   .bg-grid {
     background-image: 
-      linear-gradient(to right, hsl(var(--border) / 0.2) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border) / 0.2) 1px, transparent 1px);
-    background-size: 60px 60px;
+      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 80px 80px;
   }
 }
 

@@ -165,8 +165,8 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-40" />
+      <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-background via-secondary/30 to-background">
+        <div className="absolute inset-0 bg-grid opacity-30" />
         <div className="container mx-auto px-4 relative z-10 pt-20">
           <div className="max-w-3xl">
             <motion.p
@@ -231,7 +231,7 @@ const LandingPage = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="section bg-card/30">
+      <section id="about" className="section bg-secondary/50">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -319,7 +319,7 @@ const LandingPage = () => {
       </section>
 
       {/* Blog Section */}
-      <section id="blog" className="section bg-card/30">
+      <section id="blog" className="section bg-secondary/50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
