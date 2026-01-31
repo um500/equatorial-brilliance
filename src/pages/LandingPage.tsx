@@ -207,20 +207,20 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden" style={{ background: 'linear-gradient(135deg, hsl(220 20% 95%) 0%, hsl(35 30% 95%) 50%, hsl(220 15% 96%) 100%)' }}>
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-32">
-        <div className="absolute inset-0">
+      <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-32" style={{ background: 'linear-gradient(135deg, hsl(220 30% 15%) 0%, hsl(220 25% 22%) 40%, hsl(35 40% 25%) 100%)' }}>
+        <div className="absolute inset-0 opacity-30">
           <img src={heroImage} alt="IT Services" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/50 md:to-background/60" />
         </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30" />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-xl lg:max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-block bg-primary/10 text-primary px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium mb-4 md:mb-6"
+              className="inline-block bg-primary/20 text-primary px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium mb-4 md:mb-6 backdrop-blur-sm border border-primary/30"
             >
               🚀 Your Trusted IT Partner in UAE
             </motion.div>
@@ -228,7 +228,7 @@ const LandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-4 md:mb-6 text-foreground"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-4 md:mb-6 text-white"
             >
               Complete IT Services & Digital Solutions
             </motion.h1>
@@ -236,7 +236,7 @@ const LandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8 leading-relaxed"
+              className="text-base md:text-lg text-white/80 mb-6 md:mb-8 leading-relaxed"
             >
               From web development to digital marketing, we deliver comprehensive IT solutions that help businesses grow, innovate, and succeed in the digital landscape.
             </motion.p>
@@ -249,7 +249,7 @@ const LandingPage = () => {
               <a href="#contact" className="btn-primary inline-flex items-center justify-center gap-2 text-sm md:text-base">
                 Get Free Consultation <ArrowRight size={18} />
               </a>
-              <a href="#services" className="btn-outline text-center text-sm md:text-base">
+              <a href="#services" className="btn-outline text-center text-sm md:text-base bg-white/10 border-white/30 text-white hover:bg-white/20">
                 Explore Services
               </a>
             </motion.div>
@@ -396,10 +396,11 @@ const LandingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="bg-background rounded-xl p-4 md:p-6 shadow-sm border border-border hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
+                className="rounded-xl p-4 md:p-6 shadow-md border border-white/50 hover:shadow-2xl hover:border-primary/50 hover:-translate-y-2 transition-all duration-300 group cursor-pointer"
+                style={{ background: 'linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(35 30% 98%) 50%, hsl(220 20% 98%) 100%)' }}
               >
-                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3 md:mb-4 group-hover:bg-primary transition-colors duration-300">
-                  <service.icon className="w-5 h-5 md:w-7 md:h-7 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-all duration-300" style={{ background: 'linear-gradient(135deg, hsl(38 95% 50%) 0%, hsl(30 90% 45%) 100%)' }}>
+                  <service.icon className="w-5 h-5 md:w-7 md:h-7 text-white" />
                 </div>
                 <h3 className="font-semibold text-sm md:text-lg mb-1 md:mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
                 <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{service.description}</p>
