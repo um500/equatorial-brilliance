@@ -48,36 +48,35 @@ const Navbar = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
         className="transition-all duration-300"
-        style={{ background: 'hsl(192 30% 20%)' }}
+        style={{ background: 'hsl(192 30% 18%)' }}
       >
-        <div className="flex items-center justify-between">
-          {/* Logo */}
+        <div className="container mx-auto px-4 flex items-center justify-between">
+          {/* Logo - Left */}
           <a 
             href="#home" 
             onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }} 
-            className="flex items-center px-6 py-4 md:py-5"
-            style={{ background: 'hsl(192 35% 18%)' }}
+            className="flex items-center py-4 md:py-5 pr-8"
           >
-            <span className="font-display font-bold text-lg md:text-xl text-white">
+            <span className="font-display font-bold text-xl md:text-2xl text-white italic">
               Equatorial IT
             </span>
           </a>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center flex-1 justify-center">
+          {/* Desktop Nav Links - Left aligned after logo */}
+          <div className="hidden lg:flex items-center flex-1">
             {navLinks.map((link, index) => (
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className={`px-5 xl:px-6 py-5 text-sm font-medium transition-all duration-300 ${
+                className={`px-5 xl:px-6 py-5 text-sm md:text-base font-medium transition-all duration-300 ${
                   activeSection === link.href.replace('#', '')
                     ? 'text-white'
-                    : 'text-white/70 hover:text-white'
+                    : 'text-white/70 hover:text-white hover:bg-white/5'
                 }`}
                 style={{ 
                   background: activeSection === link.href.replace('#', '') 
-                    ? 'hsl(192 40% 28%)' 
-                    : index % 2 === 0 ? 'hsl(192 30% 22%)' : 'hsl(192 30% 20%)'
+                    ? 'hsl(180 40% 35%)' 
+                    : 'transparent'
                 }}
               >
                 {link.name}
@@ -85,10 +84,10 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Button - Right */}
           <button
             onClick={() => scrollToSection('#contact')}
-            className="hidden lg:block px-6 xl:px-8 py-5 text-sm font-semibold text-white transition-all duration-300 hover:brightness-110"
+            className="hidden lg:block px-6 xl:px-8 py-4 text-sm md:text-base font-bold text-white transition-all duration-300 hover:brightness-110 rounded-sm"
             style={{ background: 'linear-gradient(135deg, hsl(25 85% 55%) 0%, hsl(20 80% 50%) 100%)' }}
           >
             Get In Touch
@@ -97,10 +96,10 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-4 text-white"
+            className="lg:hidden p-3 text-white"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
 
@@ -112,21 +111,21 @@ const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden overflow-hidden"
-              style={{ background: 'hsl(192 30% 18%)' }}
+              style={{ background: 'hsl(192 30% 16%)' }}
             >
               <div className="p-4 flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <button
                     key={link.href}
                     onClick={() => scrollToSection(link.href)}
-                    className={`px-4 py-3 rounded-md text-left transition-colors ${
+                    className={`px-4 py-3 rounded-md text-left text-base transition-colors ${
                       activeSection === link.href.replace('#', '')
                         ? 'text-white font-medium'
                         : 'text-white/70 hover:text-white'
                     }`}
                     style={{ 
                       background: activeSection === link.href.replace('#', '') 
-                        ? 'hsl(192 40% 28%)' 
+                        ? 'hsl(180 40% 35%)' 
                         : 'transparent'
                     }}
                   >
@@ -135,7 +134,7 @@ const Navbar = () => {
                 ))}
                 <button 
                   onClick={() => scrollToSection('#contact')} 
-                  className="text-center mt-3 py-3 rounded-md text-white font-semibold"
+                  className="text-center mt-3 py-3 rounded-md text-white font-bold text-base"
                   style={{ background: 'linear-gradient(135deg, hsl(25 85% 55%) 0%, hsl(20 80% 50%) 100%)' }}
                 >
                   Get In Touch
