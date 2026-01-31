@@ -124,21 +124,21 @@ const whyChooseUs = [
 // Blog posts
 const blogPosts = [
   {
-    title: 'Why Every Business Needs a Professional Website in 2024',
+    title: 'Why Every Business Needs a Professional Website in 2026',
     excerpt: 'In today\'s digital age, a professional website is crucial for business success and credibility.',
-    date: 'Jan 15, 2024',
+    date: 'Jan 31, 2026',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop',
   },
   {
     title: 'Digital Marketing Strategies That Actually Work',
     excerpt: 'Discover proven strategies to grow your business and maximize your marketing ROI.',
-    date: 'Jan 10, 2024',
+    date: 'Jan 27, 2026',
     image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=250&fit=crop',
   },
   {
     title: 'The Importance of SEO for Local Businesses',
     excerpt: 'Learn how to optimize your online presence and attract more local customers.',
-    date: 'Jan 5, 2024',
+    date: 'Jan 23, 2026',
     image: 'https://images.unsplash.com/photo-1553484771-371a605b060b?w=400&h=250&fit=crop',
   },
 ];
