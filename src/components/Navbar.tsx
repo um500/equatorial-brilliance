@@ -1,43 +1,65 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Services', href: '#services' },
-  { name: 'Blog', href: '#blog' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '#home', route: '/' },
+  { name: 'About', href: '/about', route: '/about', isPage: true },
+  { name: 'Services', href: '#services', route: '/' },
+  { name: 'Blog', href: '#blog', route: '/' },
+  { name: 'Contact', href: '#contact', route: '/' },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      const sections = navLinks.map(link => link.href.replace('#', ''));
-      for (const section of sections.reverse()) {
-        const element = document.getElementById(section);
-        if (element && window.scrollY >= element.offsetTop - 150) {
-          setActiveSection(section);
-          break;
+      if (location.pathname === '/') {
+        const sections = navLinks.filter(l => !l.isPage).map(link => link.href.replace('#', ''));
+        for (const section of sections.reverse()) {
+          const element = document.getElementById(section);
+          if (element && window.scrollY >= element.offsetTop - 150) {
+            setActiveSection(section);
+            break;
+          }
         }
       }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
 
-  const scrollToSection = (href: string) => {
-    const element = document.getElementById(href.replace('#', ''));
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleNavClick = (link: typeof navLinks[0]) => {
     setIsMobileMenuOpen(false);
+    
+    if (link.isPage) {
+      navigate(link.href);
+      return;
+    }
+
+    if (location.pathname !== '/') {
+      navigate('/' + link.href);
+    } else {
+      const element = document.getElementById(link.href.replace('#', ''));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  const isActive = (link: typeof navLinks[0]) => {
+    if (link.isPage) {
+      return location.pathname === link.href;
+    }
+    return location.pathname === '/' && activeSection === link.href.replace('#', '');
   };
 
   return (
@@ -52,29 +74,28 @@ const Navbar = () => {
       >
         <div className="container mx-auto px-4 flex items-center justify-between">
           {/* Logo - Left */}
-          <a 
-            href="#home" 
-            onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }} 
+          <Link 
+            to="/"
             className="flex items-center py-4 md:py-5"
           >
             <span className="font-display font-bold text-xl md:text-2xl text-white italic">
               Equatorial IT
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Nav Links + CTA - Right aligned */}
           <div className="hidden lg:flex items-center">
             {navLinks.map((link) => (
               <button
                 key={link.href}
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => handleNavClick(link)}
                 className={`px-5 xl:px-6 py-5 text-sm md:text-base font-medium transition-all duration-300 ${
-                  activeSection === link.href.replace('#', '')
+                  isActive(link)
                     ? 'text-white'
                     : 'text-white/70 hover:text-white hover:bg-white/5'
                 }`}
                 style={{ 
-                  background: activeSection === link.href.replace('#', '') 
+                  background: isActive(link)
                     ? 'hsl(180 40% 35%)' 
                     : 'transparent'
                 }}
@@ -85,7 +106,7 @@ const Navbar = () => {
             
             {/* CTA Button */}
             <button
-              onClick={() => scrollToSection('#contact')}
+              onClick={() => handleNavClick({ name: 'Contact', href: '#contact', route: '/' })}
               className="ml-4 px-6 xl:px-8 py-3 text-sm md:text-base font-bold text-white transition-all duration-300 hover:brightness-110 rounded-sm"
               style={{ background: 'linear-gradient(135deg, hsl(25 85% 55%) 0%, hsl(20 80% 50%) 100%)' }}
             >
@@ -117,14 +138,14 @@ const Navbar = () => {
                 {navLinks.map((link) => (
                   <button
                     key={link.href}
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => handleNavClick(link)}
                     className={`px-4 py-3 rounded-md text-left text-base transition-colors ${
-                      activeSection === link.href.replace('#', '')
+                      isActive(link)
                         ? 'text-white font-medium'
                         : 'text-white/70 hover:text-white'
                     }`}
                     style={{ 
-                      background: activeSection === link.href.replace('#', '') 
+                      background: isActive(link)
                         ? 'hsl(180 40% 35%)' 
                         : 'transparent'
                     }}
@@ -133,7 +154,7 @@ const Navbar = () => {
                   </button>
                 ))}
                 <button 
-                  onClick={() => scrollToSection('#contact')} 
+                  onClick={() => handleNavClick({ name: 'Contact', href: '#contact', route: '/' })} 
                   className="text-center mt-3 py-3 rounded-md text-white font-bold text-base"
                   style={{ background: 'linear-gradient(135deg, hsl(25 85% 55%) 0%, hsl(20 80% 50%) 100%)' }}
                 >
