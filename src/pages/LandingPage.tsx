@@ -619,63 +619,6 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="py-10 md:py-16 bg-foreground text-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mb-8 md:mb-10">
-            <div className="col-span-2 md:col-span-1">
-              <div className="mb-3 md:mb-4">
-                <span className="font-display font-bold text-lg md:text-xl">Equatorial IT</span>
-              </div>
-              <p className="text-xs md:text-sm text-background/70 leading-relaxed mb-3 md:mb-4">
-                Complete IT service and support provider offering comprehensive solutions for businesses in the UAE.
-              </p>
-              <div className="flex gap-2 md:gap-3">
-                {socialLinks.map(({ icon: Icon, link }, i) => (
-                  <a
-                    key={i}
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 md:w-9 md:h-9 rounded-md bg-background/10 flex items-center justify-center text-background/70 hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
-                  >
-                    <Icon size={14} className="md:hidden" />
-                    <Icon size={16} className="hidden md:block" />
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-3 md:mb-4 text-sm md:text-base">Services</h4>
-              <ul className="space-y-1.5 md:space-y-2 text-xs md:text-sm text-background/70">
-                {['Web Development', 'Digital Marketing', 'SEO Services', 'IT Support', 'CCTV & Security'].map((s) => (
-                  <li key={s}><a href="#services" className="hover:text-background transition-colors">{s}</a></li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-3 md:mb-4 text-sm md:text-base">Quick Links</h4>
-              <ul className="space-y-1.5 md:space-y-2 text-xs md:text-sm text-background/70">
-                {navLinks.map((link) => (
-                  <li key={link.href}><a href={link.href} className="hover:text-background transition-colors">{link.name}</a></li>
-                ))}
-              </ul>
-            </div>
-            <div className="col-span-2 md:col-span-1">
-              <h4 className="font-semibold mb-3 md:mb-4 text-sm md:text-base">Contact Info</h4>
-              <ul className="space-y-2 md:space-y-3 text-xs md:text-sm text-background/70">
-                <li className="flex items-start gap-2"><MapPin size={14} className="mt-0.5 flex-shrink-0" /> AL Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE</li>
-                <li className="flex items-center gap-2"><Phone size={14} /> +971 00 000 0000</li>
-                <li className="flex items-center gap-2"><Mail size={14} /> info@equatorialit.com</li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-background/10 pt-6 md:pt-8 text-center text-xs md:text-sm text-background/60">
-            © {new Date().getFullYear()} Equatorial IT Services FZ-LLC. All rights reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
